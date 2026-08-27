@@ -58,8 +58,6 @@ h2 { font-size: clamp(44px, 5vw, 76px); font-weight: 500; letter-spacing: -.08em
 .reel-card { background: var(--cream); height: 370px; overflow: hidden; position: relative; transition: transform .2s ease; }
 .reel-card:hover { transform: translateY(-5px); }
 .reel-card iframe { border: 0; display: block; height: 560px; left: 0; position: absolute; top: -58px; width: 100%; }
-.reel-card > a { background: rgba(28,28,26,.9); bottom: 0; color: var(--paper); font-family: var(--mono); font-size: 10px; left: 0; padding: 12px; position: absolute; text-transform: uppercase; width: 100%; }
-.reel-card > a span { color: var(--gold); font-size: 14px; margin-left: 6px; }
 .booking { background: var(--ink); color: var(--paper); display: grid; gap: 10vw; grid-template-columns: 1fr 1.1fr; padding: 125px 15vw; }
 .booking .eyebrow { color: #a5a198; }
 .booking-intro h2 { margin-bottom: 30px; }
