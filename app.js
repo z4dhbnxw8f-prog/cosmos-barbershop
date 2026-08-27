@@ -1,7 +1,53 @@
+const carousel = document.querySelector('[data-carousel]');
 const form = document.querySelector('#booking-form');
 const dateInput = document.querySelector('#date');
 const status = document.querySelector('#form-status');
 const whatsappNumber = '14436768470';
+
+if (carousel) {
+  const track = carousel.querySelector('.gallery-track');
+  const slides = [...carousel.querySelectorAll('.gallery-slide')];
+  const dots = carousel.querySelector('[data-carousel-dots]');
+  const count = carousel.querySelector('[data-carousel-count]');
+  let currentIndex = 0;
+  let autoplay;
+
+  slides.forEach((slide, index) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.setAttribute('aria-label', `Show gallery image ${index + 1}`);
+    dot.addEventListener('click', () => goTo(index));
+    dots.append(dot);
+  });
+
+  const update = () => {
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    count.textContent = `${String(currentIndex + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+    dots.querySelectorAll('button').forEach((dot, index) => {
+      dot.classList.toggle('is-active', index === currentIndex);
+      dot.setAttribute('aria-current', index === currentIndex ? 'true' : 'false');
+    });
+  };
+
+  const goTo = (index) => {
+    currentIndex = (index + slides.length) % slides.length;
+    update();
+  };
+
+  const startAutoplay = () => {
+    clearInterval(autoplay);
+    autoplay = setInterval(() => goTo(currentIndex + 1), 5000);
+  };
+
+  carousel.querySelector('[data-carousel-prev]').addEventListener('click', () => goTo(currentIndex - 1));
+  carousel.querySelector('[data-carousel-next]').addEventListener('click', () => goTo(currentIndex + 1));
+  carousel.addEventListener('mouseenter', () => clearInterval(autoplay));
+  carousel.addEventListener('mouseleave', startAutoplay);
+  carousel.addEventListener('focusin', () => clearInterval(autoplay));
+  carousel.addEventListener('focusout', startAutoplay);
+  update();
+  startAutoplay();
+}
 
 const today = new Date();
 today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
