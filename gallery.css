@@ -1,0 +1,14 @@
+.instagram-section { align-items: start; }
+.gallery-grid { display: grid; gap: 10px; grid-template-columns: repeat(3, 1fr); }
+.gallery-tile { background: #211310; border: 0; cursor: zoom-in; min-height: 145px; overflow: hidden; padding: 0; position: relative; }
+.gallery-tile-featured { grid-column: span 2; grid-row: span 2; min-height: 300px; }
+.gallery-tile img { display: block; height: 100%; inset: 0; object-fit: cover; position: absolute; transition: transform .35s ease; width: 100%; }
+.gallery-tile span { align-items: center; background: rgba(25, 17, 15, .76); bottom: 10px; color: var(--paper); display: flex; font-family: var(--mono); font-size: 9px; left: 10px; letter-spacing: .08em; opacity: 0; padding: 8px 10px; position: absolute; text-transform: uppercase; transform: translateY(6px); transition: .2s ease; }
+.gallery-tile:hover img, .gallery-tile:focus-visible img { transform: scale(1.06); }
+.gallery-tile:hover span, .gallery-tile:focus-visible span { opacity: 1; transform: translateY(0); }
+.gallery-tile:focus-visible { outline: 3px solid var(--wine); outline-offset: 3px; }
+.image-lightbox { background: transparent; border: 0; max-height: 92vh; max-width: min(92vw, 1100px); overflow: visible; padding: 0; position: relative; }
+.image-lightbox::backdrop { background: rgba(15, 9, 7, .9); backdrop-filter: blur(5px); }
+.image-lightbox img { display: block; max-height: 92vh; max-width: 100%; object-fit: contain; }
+.lightbox-close { align-items: center; background: rgba(25, 17, 15, .9); border: 1px solid rgba(244, 237, 223, .8); border-radius: 50%; color: var(--paper); cursor: pointer; display: flex; font-family: Arial, sans-serif; font-size: 29px; height: 42px; justify-content: center; line-height: 1; padding: 0 0 3px; position: absolute; right: 12px; top: 12px; width: 42px; z-index: 1; }
+@media (max-width: 560px) { .gallery-grid { gap: 7px; grid-template-columns: repeat(2, 1fr); } .gallery-tile { min-height: 120px; } .gallery-tile-featured { min-height: 245px; } .gallery-tile span { display: none; } .lightbox-close { right: 10px; top: 10px; } }

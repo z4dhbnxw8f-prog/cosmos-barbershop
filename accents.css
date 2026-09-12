@@ -1,0 +1,66 @@
+:root { --green: #2f6b55; --white: #fffdf8; }
+.header-book { background: var(--white); }
+.header-book:hover { background: var(--green); border-color: var(--green); color: var(--white); }
+.hero .button-dark { background: var(--green); color: var(--white); }
+.hero .button-dark:hover { background: var(--white); color: var(--green); }
+.service-option:has(input:checked), .time-slot:has(input:checked), .calendar-day.is-selected { background: var(--green); border-color: var(--green); color: var(--white); }
+.service-option:has(input:checked) small, .service-option:has(input:checked) b { color: var(--white); }
+.calendar-day.is-selected::after { background: var(--white); }
+.booking-form .button-light { background: var(--green); color: var(--white); }
+.booking-form .button-light:hover { background: var(--white); color: var(--green); }
+.button-whatsapp { border-color: var(--white); color: var(--white); }
+.button-whatsapp:hover { background: var(--white); color: var(--green); }
+.lightbox-close { background: var(--white); border-color: var(--green); color: var(--green); }
+
+/* Compact the visual rhythm without reducing form usability. */
+.hero-copy { padding-bottom: 5vw; padding-top: 5vw; }
+.section-grid { padding-bottom: 95px; padding-top: 95px; }
+.instagram-section { padding-bottom: 90px; padding-top: 90px; }
+.booking { padding-bottom: 95px; padding-top: 95px; }
+.service-row { padding-bottom: 21px; padding-top: 21px; }
+.booking-step { margin-bottom: 28px; }
+.booking-facts { margin-top: 28px; }
+@media (max-width: 820px) { .hero-copy { padding-bottom: 58px; padding-top: 64px; } .section-grid, .instagram-section, .booking { padding-bottom: 72px; padding-top: 72px; } }
+@media (max-width: 560px) { .hero-copy { padding-bottom: 48px; padding-top: 56px; } .section-grid, .instagram-section, .booking { padding-bottom: 58px; padding-top: 58px; } .booking-step { margin-bottom: 24px; } }
+
+/* Editorial finishing details. */
+.hero-trust { border-left: 2px solid var(--green); color: #dfd4c6; font-family: var(--mono); font-size: 9px; letter-spacing: .08em; margin: 24px 0 0; padding-left: 11px; text-transform: uppercase; }
+.gallery-grid { grid-template-columns: repeat(3, 1fr); }
+.gallery-tile { min-height: 170px; }
+.gallery-tile-featured { min-height: 350px; }
+.hero-copy { animation: premium-rise .7s ease-out both; }
+.hero-image { animation: premium-fade .9s ease-out both; }
+.service-row, .gallery-tile, .booking-form { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease; }
+.gallery-tile:hover { box-shadow: 0 14px 26px rgba(25, 17, 15, .18); transform: translateY(-3px); }
+.booking-form { box-shadow: 18px 18px 0 rgba(215, 168, 71, .08); }
+@keyframes premium-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes premium-fade { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .hero-copy, .hero-image { animation: none; } }
+@media (max-width: 560px) { .gallery-tile { min-height: 130px; } .gallery-tile-featured { min-height: 265px; } }
+
+/* Verified business details and final call-to-action. */
+.hero-image { background-image: linear-gradient(90deg, rgba(25, 17, 15, .28), transparent 55%), url('image galleries/ChatGPT Image Sep 12, 2026 at 01_00_18 PM.png'); background-position: center; }
+.information-section, .hiring-section { display: grid; gap: 8vw; grid-template-columns: .8fr 1.2fr; margin: 0 auto; max-width: 1400px; padding: 90px 9vw; }
+.information-grid { border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; }
+.information-grid > div { border-bottom: 1px solid var(--line); padding: 22px 16px 22px 0; }
+.information-grid span { color: var(--wine); font-family: var(--mono); font-size: 9px; letter-spacing: .09em; text-transform: uppercase; }
+.information-grid p, .hiring-section p, .final-cta > p:not(.eyebrow) { color: var(--muted); font-size: 14px; line-height: 1.7; margin: 10px 0 0; }
+.information-grid a { text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 3px; }
+.hiring-section { align-items: center; background: #e8dac5; max-width: none; padding-bottom: 70px; padding-top: 70px; }
+.hiring-section img { justify-self: center; max-width: 310px; width: 100%; }
+.hiring-section h2 { font-size: clamp(42px, 5vw, 72px); }
+.hiring-button { background: var(--wine); color: var(--white); margin-top: 24px; }
+.final-cta { background: var(--green); color: var(--white); padding: 90px 8vw; text-align: center; }
+.final-cta .eyebrow, .final-cta h2 em { color: var(--gold); }
+.final-cta > p:not(.eyebrow) { color: #e5f0e9; margin: 0 auto 28px; }
+.final-cta > div { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.final-cta .button-dark { background: var(--white); color: var(--green); }
+.cta-whatsapp { background: transparent; border-color: var(--white); color: var(--white); }
+.field-label { color: #eadbce; }
+.field-label input::placeholder, .field-label textarea::placeholder { color: #c2aea0; }
+.form-status { color: #a9e1bd; }
+@media (max-width: 820px) { .information-section, .hiring-section { grid-template-columns: 1fr; padding: 70px 8vw; } .hiring-section img { justify-self: start; max-width: 250px; } }
+ .menu-toggle { display: none; }
+ .sr-only { height: 1px; margin: -1px; overflow: hidden; position: absolute; width: 1px; }
+@media (max-width: 820px) { .menu-toggle { background: transparent; border: 0; cursor: pointer; display: grid; gap: 5px; justify-self: end; padding: 10px; } .menu-toggle > span:not(.sr-only) { background: var(--ink); display: block; height: 2px; width: 24px; } .nav-links { background: var(--paper); border-bottom: 1px solid var(--line); display: none; left: 0; padding: 20px 8vw; position: absolute; right: 0; top: 100%; } .nav-links.is-open { display: grid; gap: 18px; } .header-book { display: none; } }
+@media (max-width: 560px) { .information-section, .hiring-section, .final-cta { padding: 58px 7vw; } .information-grid { grid-template-columns: 1fr; } .hiring-section img { max-width: 210px; } }
