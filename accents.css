@@ -1,4 +1,7 @@
 :root { --green: #2f6b55; --white: #fffdf8; }
+.nav-links { align-items: center; }
+.nav-links .nav-icon { align-items: center; display: inline-flex; justify-content: center; min-height: 44px; width: 44px; color: var(--green); }
+.nav-icon:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 4px; }
 .header-book { background: var(--white); }
 .header-book:hover { background: var(--green); border-color: var(--green); color: var(--white); }
 .hero .button-dark { background: var(--green); color: var(--white); }
@@ -15,7 +18,7 @@
 /* Compact the visual rhythm without reducing form usability. */
 .hero-copy { padding-bottom: 5vw; padding-top: 5vw; }
 .section-grid { padding-bottom: 95px; padding-top: 95px; }
-.instagram-section { padding-bottom: 90px; padding-top: 90px; }
+.instagram-section { padding-bottom: 40px; padding-top: 90px; }
 .booking { padding-bottom: 95px; padding-top: 95px; }
 .service-row { padding-bottom: 21px; padding-top: 21px; }
 .booking-step { margin-bottom: 28px; }

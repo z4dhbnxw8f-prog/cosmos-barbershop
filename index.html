@@ -20,13 +20,12 @@
     </a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation"><span></span><span></span><span></span><span class="sr-only">Open menu</span></button>
     <nav class="nav-links" id="main-navigation" aria-label="Main navigation">
-      <a href="#top">Home</a>
-      <a href="#services">Services</a>
-      <a href="#instagram">Gallery</a>
-      <a href="#booking">Book</a>
-      <a href="#contact">Contact</a>
+      <a class="nav-icon" href="#top" aria-label="Home" title="Home"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg></a>
+      <a class="nav-icon" href="#services" aria-label="Services" title="Services"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="m8.1 8.1 12.9 12.9M8.1 15.9 21 3"/></svg></a>
+      <a class="nav-icon" href="#instagram" aria-label="Gallery" title="Gallery"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8" cy="8" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></a>
+      <a class="nav-icon booking-icon" href="#booking" aria-label="Book an appointment" title="Book an appointment"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18M9 16l2 2 4-4"/></svg></a>
+      <a class="nav-icon" href="#contact" aria-label="Contact" title="Contact"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg></a>
     </nav>
-    <a class="header-book" href="#booking">Book now <span aria-hidden="true">&#8599;</span></a>
   </header>
 
   <main id="top">
@@ -61,17 +60,17 @@
       <div class="section-heading"><p class="eyebrow">02 &nbsp;/&nbsp; THE REELS</p><h2>See us<br><em>in action.</em></h2><p>Watch the latest cuts and styles from Cosmic Styles LLC.</p></div>
       <div class="gallery-grid" aria-label="Cosmic Styles gallery">
         <button class="gallery-tile gallery-tile-featured" type="button"><img src="image galleries/ChatGPT Image Sep 12, 2026 at 01_08_37 PM (2).png" alt="Textured haircut with a precise line-up" loading="eager"><span>View image</span></button>
-        <button class="gallery-tile" type="button"><img src="image galleries/ChatGPT Image Sep 12, 2026 at 01_08_36 PM (1).png" alt="Kids textured haircut with a sharp line-up" loading="lazy"><span>View image</span></button>
-        <button class="gallery-tile" type="button"><img src="image galleries/ChatGPT Image Sep 12, 2026 at 01_05_33 PM.png" alt="Wave haircut with a shaved design and line-up" loading="lazy"><span>View image</span></button>
-        <button class="gallery-tile" type="button"><img src="image galleries/ChatGPT Image Sep 12, 2026 at 01_04_41 PM.png" alt="Loc style with a sharp line-up" loading="lazy"><span>View image</span></button>
-        <button class="gallery-tile" type="button"><img src="image galleries/ChatGPT Image Sep 12, 2026 at 01_03_02 PM.png" alt="Natural textured haircut with a crisp shape-up" loading="lazy"><span>View image</span></button>
-        <button class="gallery-tile" type="button"><img src="image galleries/ChatGPT Image Sep 12, 2026 at 01_00_18 PM.png" alt="Braided hairstyle with a precise line-up" loading="lazy"><span>View image</span></button>
+        <button class="gallery-tile" type="button"><img src="image galleries/ChatGPT Image Sep 12, 2026 at 01_08_36 PM (1).png" alt="Kids textured haircut with a sharp line-up"><span>View image</span></button>
+        <button class="gallery-tile" type="button"><img src="image galleries/ChatGPT Image Sep 12, 2026 at 01_05_33 PM.png" alt="Wave haircut with a shaved design and line-up"><span>View image</span></button>
+        <button class="gallery-tile" type="button"><img src="image galleries/ChatGPT Image Sep 12, 2026 at 01_04_41 PM.png" alt="Loc style with a sharp line-up"><span>View image</span></button>
+        <button class="gallery-tile" type="button"><img src="image galleries/ChatGPT Image Sep 12, 2026 at 01_03_02 PM.png" alt="Natural textured haircut with a crisp shape-up"><span>View image</span></button>
+        <button class="gallery-tile" type="button"><img src="image galleries/ChatGPT Image Sep 12, 2026 at 01_00_18 PM.png" alt="Braided hairstyle with a precise line-up"><span>View image</span></button>
       </div>
     </section>
 
     <section class="booking" id="booking">
       <div class="booking-intro"><p class="eyebrow">03 &nbsp;/&nbsp; BOOK A CHAIR</p><h2>Choose your<br><em>time.</em></h2><p>Select a service, date, and one of the available 30-minute appointments.</p><div class="booking-facts"><span><strong>30</strong> minutes</span><span><strong>Mon–Thu</strong> weekly</span><span><strong>9:30–7:30</strong> booking hours</span></div></div>
-      <form class="booking-form" id="booking-form" data-formspree-endpoint="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" novalidate>
+      <form class="booking-form" id="booking-form" data-booking-endpoint="/api/booking" novalidate>
         <fieldset class="booking-step service-step">
           <legend><span>01</span> Choose a service</legend>
           <div class="service-options">
@@ -116,7 +115,7 @@
         <div class="booking-summary" id="booking-summary" aria-live="polite"><span>Select a service, date, and time to continue.</span></div>
         <button class="button button-light" id="booking-email" type="submit" disabled>Send booking request <span aria-hidden="true">&#8594;</span></button>
         <button class="button button-whatsapp" id="booking-whatsapp" type="button" disabled>Request on WhatsApp <span aria-hidden="true">&#8599;</span></button>
-        <p class="booking-note">Send your booking by email, or request it directly on WhatsApp. Your appointment is confirmed after Cosmic Styles replies.</p>
+        <p class="booking-note"><strong>Late arrival policy:</strong> Arriving late may result in your appointment being canceled or given to another client.</p>
         <p class="form-status" id="form-status" role="status"></p>
       </form>
     </section>
@@ -132,7 +131,7 @@
     </section>
 
     <section class="hiring-section">
-      <img src="ChatGPT Image Aug 27, 2026 at 04_34_05 PM.png" alt="Cosmic Styles now hiring barbers and stylists poster" loading="lazy">
+      <img src="ChatGPT Image Aug 27, 2026 at 04_34_05 PM.png" alt="Cosmic Styles now hiring barbers and stylists poster">
       <div><p class="eyebrow">JOIN OUR TEAM</p><h2>Now hiring<br><em>barbers &amp; stylists.</em></h2><p>Serious enquiries only. Contact Cosmic Styles to learn more.</p><a class="button hiring-button" href="tel:+14436768470">Call (443) 676-8470 <span aria-hidden="true">&#8594;</span></a></div>
     </section>
 
@@ -141,7 +140,11 @@
 
   <dialog class="image-lightbox" id="image-lightbox" aria-label="Expanded gallery image"><button class="lightbox-close" type="button" aria-label="Close image">&times;</button><img id="lightbox-image" src="" alt=""></dialog>
 
-  <footer>Cosmic Styles LLC &nbsp; / &nbsp; 8136 Liberty Road, Suite B, Milford Mill, MD 21244 &nbsp; / &nbsp; Monday - Saturday &nbsp; / &nbsp; Appointments preferred &nbsp; / &nbsp; 9:30 AM - 7:30 PM &nbsp; / &nbsp; 30-minute appointments &nbsp; / &nbsp; <a href="https://www.instagram.com/cosmicstylesllc" target="_blank" rel="noopener">Instagram</a></footer>
+  <footer>
+    <div class="footer-info">Cosmic Styles LLC &nbsp; / &nbsp; 8136 Liberty Road, Suite B, Milford Mill, MD 21244 &nbsp; / &nbsp; Monday - Saturday &nbsp; / &nbsp; Appointments preferred &nbsp; / &nbsp; 9:30 AM - 7:30 PM &nbsp; / &nbsp; 30-minute appointments</div>
+    <div class="footer-socials"><span>Follow us on</span> <a href="https://www.instagram.com/cosmicstylesllc" target="_blank" rel="noopener">Instagram</a> <span>and</span> <a href="https://www.tiktok.com/@cosmicstyles2023" target="_blank" rel="noopener">TikTok</a></div>
+    <div class="footer-credit"><span>&copy; 2026</span> <a href="https://www.instagram.com/xxldes1gns/" target="_blank" rel="noopener">XXLDESIGNS</a><span>. ALL RIGHTS RESERVED.</span></div>
+  </footer>
   <script src="app.js"></script>
 </body>
 </html>

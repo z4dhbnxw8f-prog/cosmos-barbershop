@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cosmic Styles Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <main class="dashboard-shell">
+    <header class="dashboard-header">
+      <div>
+        <p class="eyebrow">COSMIC STYLES LLC / OWNER VIEW</p>
+        <h1>Booking dashboard</h1>
+        <p class="dashboard-date" id="dashboard-date">Loading today...</p>
+      </div>
+      <a class="back-link" href="/">Back to site <span aria-hidden="true">&#8599;</span></a>
+    </header>
+
+    <section class="stats-grid" aria-label="Booking summary">
+      <article class="stat-card"><span>Booked today</span><strong id="booked-today">--</strong></article>
+      <article class="stat-card stat-card-accent"><span>Open today</span><strong id="open-today">--</strong></article>
+      <article class="stat-card"><span>Total upcoming</span><strong id="upcoming-total">--</strong></article>
+    </section>
+
+    <section class="login-panel" id="login-panel">
+      <p class="eyebrow">PRIVATE ACCESS</p>
+      <h2>Owner sign in</h2>
+      <p>Enter the admin password to view and manage reservations.</p>
+      <form id="login-form"><label for="admin-password">Admin password</label><input id="admin-password" type="password" autocomplete="current-password" required><button type="submit">Sign in</button></form>
+      <p class="login-status" id="login-status" role="status"></p>
+    </section>
+
+    <section class="booking-panel" id="booking-panel" hidden>
+      <div class="panel-heading"><div><p class="eyebrow">RESERVATIONS</p><h2>Upcoming appointments</h2></div><button class="refresh-button" id="refresh-dashboard" type="button">Refresh</button></div>
+      <p class="dashboard-status" id="dashboard-status" role="status">Loading reservations...</p>
+      <div class="booking-list" id="booking-list"></div>
+    </section>
+  </main>
+  <script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 const requiredFields = ['name', 'email', 'phone', 'service', 'date', 'time'];
-const defaultBookingNotificationEmail = 'Okoukoni.cosmas@yahoo.com';
+const bookingFormEndpoint = process.env.BOOKING_FORM_ENDPOINT || 'https://formsubmit.co/ajax/Okoukoni.cosmas@yahoo.com';
+const reservationTtlSeconds = 60 * 60 * 24 * 90;
 
 const escapeHtml = (value) => String(value || '')
   .replaceAll('&', '&amp;')
@@ -8,22 +9,40 @@ const escapeHtml = (value) => String(value || '')
   .replaceAll('"', '&quot;')
   .replaceAll("'", '&#039;');
 
-const sendEmail = async (booking) => {
-  const response = await fetch('https://api.resend.com/emails', {
+const redisCommand = async (command) => {
+  const response = await fetch(process.env.KV_REST_API_URL, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}`,
       'Content-Type': 'application/json'
     },
+    body: JSON.stringify(command)
+  });
+
+  if (!response.ok) throw new Error(`Redis request failed with ${response.status}`);
+  return response.json();
+};
+
+const sendEmail = async (booking) => {
+  const response = await fetch(bookingFormEndpoint, {
+    method: 'POST',
+    headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      from: process.env.BOOKING_FROM_EMAIL,
-      to: [process.env.BOOKING_NOTIFICATION_EMAIL || defaultBookingNotificationEmail],
-      subject: `New booking request: ${booking.name}`,
-      html: `<h2>New Cosmic Styles booking request</h2><p><strong>Name:</strong> ${escapeHtml(booking.name)}</p><p><strong>Email:</strong> ${escapeHtml(booking.email)}</p><p><strong>Phone:</strong> ${escapeHtml(booking.phone)}</p><p><strong>Service:</strong> ${escapeHtml(booking.service)}${booking.price ? ` ($${escapeHtml(booking.price)})` : ''}</p><p><strong>Date:</strong> ${escapeHtml(booking.date)}</p><p><strong>Time:</strong> ${escapeHtml(booking.time)}</p>${booking.notes ? `<p><strong>Notes:</strong> ${escapeHtml(booking.notes)}</p>` : ''}`
+      name: booking.name,
+      email: booking.email,
+      phone: booking.phone,
+      service: booking.service,
+      service_description: booking.serviceDescription,
+      price: booking.price,
+      date: booking.date,
+      time: booking.time,
+      notes: booking.notes,
+      _replyto: booking.email,
+      _subject: `New booking request: ${booking.name}`
     })
   });
 
-  if (!response.ok) throw new Error(`Resend request failed with ${response.status}`);
+  if (!response.ok) throw new Error(`Booking email request failed with ${response.status}`);
 };
 
 export default async function handler(request, response) {
@@ -36,15 +55,31 @@ export default async function handler(request, response) {
   const missingFields = requiredFields.filter((field) => !String(booking[field] || '').trim());
   if (missingFields.length) return response.status(400).json({ error: `Missing fields: ${missingFields.join(', ')}` });
 
-  const notificationConfig = ['RESEND_API_KEY', 'BOOKING_FROM_EMAIL'];
+  const notificationConfig = ['KV_REST_API_URL', 'KV_REST_API_TOKEN'];
   if (notificationConfig.some((key) => !process.env[key])) {
     return response.status(503).json({ error: 'Booking notifications are not configured.' });
   }
 
+  const reservationKey = `booking:${booking.date}:${booking.time}`.replaceAll(/[^a-zA-Z0-9:_-]/g, '_');
+
   try {
+    const reservation = await redisCommand(['SET', reservationKey, JSON.stringify(booking), 'NX', 'EX', String(reservationTtlSeconds)]);
+    if (reservation.result !== 'OK') {
+      return response.status(409).json({ error: 'That appointment is already reserved.' });
+    }
+
+    if (booking.reserveOnly) {
+      return response.status(200).json({ reserved: true });
+    }
+
     await sendEmail(booking);
     return response.status(200).json({ delivered: true });
   } catch (error) {
+    try {
+      await redisCommand(['DEL', reservationKey]);
+    } catch (cleanupError) {
+      console.error(cleanupError);
+    }
     console.error(error);
     return response.status(502).json({ error: 'Unable to deliver booking notifications.' });
   }
