@@ -36,7 +36,7 @@
         <p class="hero-intro">Premium haircuts, shape-ups and grooming in Milford Mill, Maryland. Book your 30-minute appointment today.</p>
         <p class="hero-trust">Appointments preferred &nbsp;·&nbsp; 30-minute sessions</p>
         <div class="hero-actions">
-          <a class="button button-dark" href="#booking">Book an appointment <span aria-hidden="true">&#8594;</span></a>
+          <a class="button button-dark" href="https://wa.me/14436768470" target="_blank" rel="noopener">Book on WhatsApp <span aria-hidden="true">&#8599;</span></a>
           <a class="text-link" href="#services">Explore services <span aria-hidden="true">&#8595;</span></a>
         </div>
       </div>
@@ -70,7 +70,7 @@
 
     <section class="booking" id="booking">
       <div class="booking-intro"><p class="eyebrow">03 &nbsp;/&nbsp; BOOK A CHAIR</p><h2>Choose your<br><em>time.</em></h2><p>Select a service, date, and one of the available 30-minute appointments.</p><div class="booking-facts"><span><strong>30</strong> minutes</span><span><strong>Mon–Thu</strong> weekly</span><span><strong>9:30–7:30</strong> booking hours</span></div></div>
-      <form class="booking-form" id="booking-form" data-booking-endpoint="/api/booking" novalidate>
+      <form class="booking-form" id="booking-form" data-booking-email="Okoukoni.cosmas@yahoo.com" novalidate>
         <fieldset class="booking-step service-step">
           <legend><span>01</span> Choose a service</legend>
           <div class="service-options">
@@ -113,8 +113,9 @@
         </fieldset>
 
         <div class="booking-summary" id="booking-summary" aria-live="polite"><span>Select a service, date, and time to continue.</span></div>
-        <button class="button button-light" id="booking-email" type="submit" disabled>Send booking request <span aria-hidden="true">&#8594;</span></button>
-        <button class="button button-whatsapp" id="booking-whatsapp" type="button" disabled>Request on WhatsApp <span aria-hidden="true">&#8599;</span></button>
+        <button class="button" id="booking-email" type="submit">Request by email <span aria-hidden="true">&#8594;</span></button>
+        <button class="button button-whatsapp" id="booking-whatsapp" type="button">Request on WhatsApp <span aria-hidden="true">&#8599;</span></button>
+        <p class="booking-note">Open your email app or WhatsApp with your booking details filled in, then press Send. Your appointment is confirmed only when the shop replies.</p>
         <p class="booking-note"><strong>Late arrival policy:</strong> Arriving late may result in your appointment being canceled or given to another client.</p>
         <p class="form-status" id="form-status" role="status"></p>
       </form>
@@ -135,7 +136,7 @@
       <div><p class="eyebrow">JOIN OUR TEAM</p><h2>Now hiring<br><em>barbers &amp; stylists.</em></h2><p>Serious enquiries only. Contact Cosmic Styles to learn more.</p><a class="button hiring-button" href="tel:+14436768470">Call (443) 676-8470 <span aria-hidden="true">&#8594;</span></a></div>
     </section>
 
-    <section class="final-cta"><p class="eyebrow">COSMIC STYLES LLC</p><h2>Ready for your<br><em>next cut?</em></h2><p>Reserve your chair at Cosmic Styles.</p><div><a class="button button-dark" href="#booking">Book an appointment <span aria-hidden="true">&#8594;</span></a><a class="button cta-whatsapp" href="https://wa.me/14436768470" target="_blank" rel="noopener">Request on WhatsApp <span aria-hidden="true">&#8599;</span></a></div></section>
+    <section class="final-cta"><p class="eyebrow">COSMIC STYLES LLC</p><h2>Ready for your<br><em>next cut?</em></h2><p>Reserve your chair at Cosmic Styles.</p><div><a class="button button-dark" href="https://wa.me/14436768470" target="_blank" rel="noopener">Book on WhatsApp <span aria-hidden="true">&#8599;</span></a></div></section>
   </main>
 
   <dialog class="image-lightbox" id="image-lightbox" aria-label="Expanded gallery image"><button class="lightbox-close" type="button" aria-label="Close image">&times;</button><img id="lightbox-image" src="" alt=""></dialog>

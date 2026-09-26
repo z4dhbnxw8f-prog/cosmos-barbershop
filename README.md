@@ -1,14 +1,10 @@
 # Cosmic Styles LLC
 
-A static barbershop booking page. Open `index.html` directly in a browser, or run `npm run dev` to serve this folder at `http://localhost:4173`.
+A static barbershop website. Run `npm run dev` to serve it locally.
 
-Booking requests can be sent by email through Formspree or opened as a pre-filled WhatsApp request.
+- **Request by email** opens the customer’s configured email app with a message addressed to `Okoukoni.cosmas@yahoo.com`.
+- **Request on WhatsApp** opens a prefilled message to `14436768470`.
 
-To activate email requests, create a Formspree form that sends to the shop email, then replace `REPLACE_WITH_YOUR_FORM_ID` in `index.html` with its form ID (for example, `xabcdefg`).
+Both messages contain the selected service, price, custom service details, date, time in Eastern Time, name, email, phone, and any notes. Customers must press Send. The shop confirms appointments manually; opening a message does not reserve a time or save a booking to the dashboard.
 
-On Vercel, booking requests can also notify the shop by email. Configure these environment variables before deploying:
-
-- `RESEND_API_KEY`
-- `BOOKING_FROM_EMAIL`
-
-Booking email notifications default to `Okoukoni.cosmas@yahoo.com`. Set `BOOKING_NOTIFICATION_EMAIL` in Vercel if you want to override it.
+No email service activation or API key is required. The browser or operating system controls the email-app prompt; an email handler must be configured. The public form does not call the existing server booking endpoint.

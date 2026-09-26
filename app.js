@@ -106,7 +106,6 @@ if (form) {
   const selectedDateLabel = document.querySelector('#selected-date');
   const timeSlots = document.querySelector('#time-slots');
   const summary = document.querySelector('#booking-summary');
-  const emailButton = document.querySelector('#booking-email');
   const whatsappButton = document.querySelector('#booking-whatsapp');
   const nameInput = document.querySelector('#name');
   const emailInput = document.querySelector('#email');
@@ -166,8 +165,6 @@ if (form) {
     const service = selectedService();
     const hasOtherServiceDescription = service?.value !== 'Other service' || serviceDescriptionInput.value.trim();
     const ready = Boolean(service && selectedDate && timeInput.value && hasOtherServiceDescription);
-    emailButton.disabled = !ready;
-    whatsappButton.disabled = !ready;
 
     if (!ready) {
       summary.innerHTML = '<span>Select a service, date, and time to continue.</span>';
@@ -334,7 +331,7 @@ if (form) {
       `Name: ${booking.name}`,
       `Email: ${booking.email}`,
       `Phone: ${booking.phone}`,
-      `Service: ${booking.service} ($${booking.price})`,
+      `Service: ${booking.service} (${booking.price === 'Custom' ? 'Price on request' : `$${booking.price}`})`,
       ...(booking.serviceDescription ? [`Service details: ${booking.serviceDescription}`] : []),
       `Date: ${booking.date}`,
       `Time: ${booking.time}`,
@@ -344,83 +341,22 @@ if (form) {
       'Please confirm this appointment.'
     ].join('\n');
 
-  whatsappButton.addEventListener('click', async () => {
+  whatsappButton.addEventListener('click', () => {
     const booking = getBooking();
     if (!booking) return;
-    whatsappButton.disabled = true;
-    whatsappButton.textContent = 'Checking availability…';
-
-    try {
-      const reservationResponse = await fetch(form.dataset.bookingEndpoint, {
-        method: 'POST',
-        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...booking, reserveOnly: true })
-      });
-
-      if (reservationResponse.status === 409) {
-        formStatus.textContent = 'That appointment was just taken. Please choose another time.';
-        renderTimeSlots();
-        return;
-      }
-      if (!reservationResponse.ok) throw new Error('Reservation request failed');
-
-      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(bookingMessage(booking))}`;
-      window.open(whatsappUrl, '_blank', 'noopener');
-      whatsappButton.innerHTML = 'Open WhatsApp <span aria-hidden="true">&#8599;</span>';
-      formStatus.textContent = `Thanks, ${booking.firstName}. Your request is ready in WhatsApp.`;
-    } catch (error) {
-      formStatus.textContent = 'We could not reserve that time. Please try another time.';
-    } finally {
-      updateSummary();
-    }
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(bookingMessage(booking))}`;
+    window.open(whatsappUrl, '_blank', 'noopener');
+    formStatus.textContent = 'Send the message in WhatsApp to request your appointment. The shop will confirm your time.';
   });
 
-  form.addEventListener('submit', async (event) => {
+  form.addEventListener('submit', (event) => {
     event.preventDefault();
     const booking = getBooking();
     if (!booking) return;
-
-    const endpoint = form.dataset.bookingEndpoint;
-    if (!endpoint || endpoint.includes('REPLACE_WITH_YOUR_FORM_ID')) {
-      formStatus.textContent = 'Email booking is not set up yet. Please use WhatsApp or add your booking form endpoint.';
-      return;
-    }
-
-    emailButton.disabled = true;
-    emailButton.textContent = 'Sending request…';
-
-    try {
-      const notificationResponse = await fetch(endpoint, {
-        method: 'POST',
-        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: booking.name,
-          email: booking.email,
-          phone: booking.phone,
-          service: booking.service,
-          service_description: booking.serviceDescription,
-          price: `$${booking.price}`,
-          date: booking.date,
-          time: booking.time,
-          notes: booking.notes,
-          replyTo: booking.email,
-          subject: `New booking request: ${booking.name}`
-        })
-      });
-
-      if (notificationResponse.status === 409) {
-        formStatus.textContent = 'That appointment was just taken. Please choose another time.';
-        renderTimeSlots();
-        return;
-      }
-      if (!notificationResponse.ok) throw new Error('Notification request failed');
-      formStatus.textContent = `Thanks, ${booking.firstName}. Your booking request has been sent by email.`;
-    } catch (error) {
-      formStatus.textContent = 'We could not send your email request. Please try WhatsApp instead.';
-    } finally {
-      emailButton.innerHTML = 'Send booking request <span aria-hidden="true">&#8594;</span>';
-      updateSummary();
-    }
+    const subject = encodeURIComponent(`Booking request - ${booking.name}`);
+    const body = encodeURIComponent(bookingMessage(booking));
+    window.location.href = `mailto:${form.dataset.bookingEmail}?subject=${subject}&body=${body}`;
+    formStatus.textContent = 'Your booking details are ready in your email app. Press Send to request your appointment. If no app opens, email Okoukoni.cosmas@yahoo.com or use WhatsApp.';
   });
 
   renderCalendar();
